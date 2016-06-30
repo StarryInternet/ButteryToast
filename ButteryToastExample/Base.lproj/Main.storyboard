@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HaT-ug-bGf">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--First-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="First" id="BYZ-38-t0r" customClass="FirstViewController" customModule="ButteryToastExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbG-WM-RFH">
+                                <rect key="frame" x="259" y="285" width="82" height="30"/>
+                                <state key="normal" title="Success 🍞">
+                                    <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="successPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ihq-T4-JQU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Eg-qd-eGd">
+                                <rect key="frame" x="266" y="323" width="69" height="30"/>
+                                <state key="normal" title="Failure 🍞">
+                                    <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="failurePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T82-hG-oOv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Eg-qd-eGd" firstAttribute="centerX" secondItem="jbG-WM-RFH" secondAttribute="centerX" id="0W8-Un-H2S"/>
+                            <constraint firstItem="jbG-WM-RFH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="U5t-2N-vxO"/>
+                            <constraint firstItem="jbG-WM-RFH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hXz-6N-Xcs"/>
+                            <constraint firstItem="0Eg-qd-eGd" firstAttribute="top" secondItem="jbG-WM-RFH" secondAttribute="bottom" constant="8" id="yxU-66-6w1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="First" id="mKm-yb-IpS">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="8a6-21-sVq">
+                            <connections>
+                                <segue destination="Ig8-8G-4sc" kind="show" id="Hd2-96-bEk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="627"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YSj-G2-ai0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HaT-ug-bGf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8P2-Oq-C1h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5BK-p3-Lpd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vF9-Ux-eQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="359" y="627"/>
+        </scene>
+        <!--Second-->
+        <scene sceneID="e4r-00-ofR">
+            <objects>
+                <viewController title="Second" id="Ig8-8G-4sc" customClass="SecondViewController" customModule="ButteryToastExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Y1-7d-fxa"/>
+                        <viewControllerLayoutGuide type="bottom" id="oja-Gh-jbn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P7o-x4-MxL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLu-nc-Hxb">
+                                <rect key="frame" x="216" y="323" width="169" height="30"/>
+                                <state key="normal" title="Failure 🍞 (auto dismiss)">
+                                    <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="failurePressed:" destination="Ig8-8G-4sc" eventType="touchUpInside" id="mHd-xB-Kjq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbJ-5X-wuI">
+                                <rect key="frame" x="209" y="285" width="182" height="30"/>
+                                <state key="normal" title="Success 🍞 (auto dismiss)">
+                                    <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="successPressed:" destination="Ig8-8G-4sc" eventType="touchUpInside" id="45b-bq-J5l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GLu-nc-Hxb" firstAttribute="top" secondItem="IbJ-5X-wuI" secondAttribute="bottom" constant="8" id="YTK-jS-tvB"/>
+                            <constraint firstItem="GLu-nc-Hxb" firstAttribute="centerX" secondItem="IbJ-5X-wuI" secondAttribute="centerX" id="dOl-BT-2uS"/>
+                            <constraint firstItem="IbJ-5X-wuI" firstAttribute="centerX" secondItem="P7o-x4-MxL" secondAttribute="centerX" id="hBs-Cj-kei"/>
+                            <constraint firstItem="IbJ-5X-wuI" firstAttribute="centerY" secondItem="P7o-x4-MxL" secondAttribute="centerY" id="ydQ-N9-6ne"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Second" id="OXp-Ve-ktE">
+                        <barButtonItem key="rightBarButtonItem" title="Modal" id="H7e-6F-39e">
+                            <connections>
+                                <segue destination="k9E-2G-xCX" kind="presentation" id="1yu-jc-jZc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OMq-en-XY0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834" y="627"/>
+        </scene>
+        <!--Second-->
+        <scene sceneID="dDb-AM-5dI">
+            <objects>
+                <viewController title="Second" id="k9E-2G-xCX" customClass="ModalViewController" customModule="ButteryToastExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q0Q-P7-meu"/>
+                        <viewControllerLayoutGuide type="bottom" id="1fz-AH-6BQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b47-up-zXT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hp-8c-R8S">
+                                <rect key="frame" x="216" y="323" width="169" height="30"/>
+                                <state key="normal" title="Failure 🍞 (auto dismiss)">
+                                    <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="failurePressed:" destination="k9E-2G-xCX" eventType="touchUpInside" id="cph-Qj-enH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nA-eP-02C">
+                                <rect key="frame" x="209" y="285" width="182" height="30"/>
+                                <state key="normal" title="Success 🍞 (auto dismiss)">
+                                    <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="successPressed:" destination="k9E-2G-xCX" eventType="touchUpInside" id="uRn-GR-j5P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-So-fVf">
+                                <rect key="frame" x="273" y="550" width="54" height="30"/>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="k9E-2G-xCX" eventType="touchUpInside" id="bZ5-7w-qKf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9hp-8c-R8S" firstAttribute="centerX" secondItem="8nA-eP-02C" secondAttribute="centerX" id="4yf-A1-AAw"/>
+                            <constraint firstItem="8nA-eP-02C" firstAttribute="centerY" secondItem="b47-up-zXT" secondAttribute="centerY" id="WIw-95-HBH"/>
+                            <constraint firstItem="9hp-8c-R8S" firstAttribute="top" secondItem="8nA-eP-02C" secondAttribute="bottom" constant="8" id="Y5N-qW-fjc"/>
+                            <constraint firstItem="6g5-So-fVf" firstAttribute="centerX" secondItem="9hp-8c-R8S" secondAttribute="centerX" id="gEG-jF-yLC"/>
+                            <constraint firstAttribute="bottom" secondItem="6g5-So-fVf" secondAttribute="bottom" constant="20" symbolic="YES" id="wR2-re-xci"/>
+                            <constraint firstItem="8nA-eP-02C" firstAttribute="centerX" secondItem="b47-up-zXT" secondAttribute="centerX" id="xz2-57-0l8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Second" id="rdB-Ts-aZW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAa-wC-O5b" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834" y="1395"/>
+        </scene>
+    </scenes>
+</document>
