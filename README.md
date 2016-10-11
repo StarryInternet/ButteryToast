@@ -9,7 +9,7 @@ Plays nicely with Autolayout.
 ## Requirements
 - iOS 8.0+
 - Xcode 8
-- Swift 2.3
+- Swift 3
 
 ## Usage
 
@@ -21,15 +21,15 @@ Toasts are messages that wrap any UIView. Toasts will try to respect autolayout 
 import ButteryToast
 
 class ToastyViewController: UIViewController {
-	override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-		let labelToToast = UILabel()
-		labelToToast.text = "View Appeared!"
-		labelToToast.backgroundColor = UIColor.lightGrayColor()
-    	let toast = Toast(view: labelToToast, height: 44)
-    	Toaster.sharedInstance.prepareToast(toast)
-	}
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    let labelToToast = UILabel()
+    labelToToast.text = "View Appeared!"
+    labelToToast.backgroundColor = UIColor.lightGray
+    let toast = Toast(view: labelToToast, height: 44)
+    Toaster.sharedInstance.prepareToast(toast)
+  }
 }
 ```
 
@@ -39,23 +39,23 @@ A `Toaster` manages a queue of `Toast` messages and decides when and where they 
 import ButteryToast
 
 class ToastyViewController: UIViewController {
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
+    
     Toaster.sharedInstance.defaultViewController = self
-
-
+    
+    
     let processingToastView = UILabel()
     processingToastView.text = "Processing change..."
     let processingToast = Toast(view: processingToastView)
     Toaster.sharedInstance.prepareToast(processingToast)
-
+    
     let successToastView = UILabel()
     successToastView.text = "Change Successful!"
     let successToast = Toast(view: successToastView)
     // dismiss processing toast and immediately present success toast
-    Toaster.sharedInstance.prepareToast(successToast, withPriority: .Immediate)
-
+    Toaster.sharedInstance.prepareToast(successToast, withPriority: .immediate)
+    
   }
 }
 ```
