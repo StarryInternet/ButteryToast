@@ -12,14 +12,14 @@ import UIKit
  Container view for views presented in a Toast.
  Useful for providing default styling for all toasts (for example, margins or drop shadows)
  */
-public class ToastView: UIView {
+open class ToastView: UIView {
 
   let contentView: UIView
 
   init(contentView: UIView) {
 
     self.contentView = contentView
-    super.init(frame: CGRectZero)
+    super.init(frame: CGRect.zero)
     commonInit()
   }
 
@@ -28,7 +28,7 @@ public class ToastView: UIView {
   }
 
   func commonInit() {
-    layer.shadowColor = UIColor.grayColor().CGColor
+    layer.shadowColor = UIColor.gray.cgColor
     layer.shadowOffset = CGSize(width: 0, height: 1)
     layer.shadowOpacity = 0.5
     addSubview(contentView)
@@ -36,8 +36,8 @@ public class ToastView: UIView {
     // constraints
     contentView.translatesAutoresizingMaskIntoConstraints = false
     var constraints: [NSLayoutConstraint] = []
-    constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[contentView]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentView": contentView])
-    constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[contentView]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentView": contentView])
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[contentView]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentView": contentView])
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[contentView]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentView": contentView])
     addConstraints(constraints)
     
   }

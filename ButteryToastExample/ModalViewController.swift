@@ -11,20 +11,20 @@ import ButteryToast
 
 class ModalViewController: UIViewController {
 
-  @IBAction func dismissPressed(sender: UIButton) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func dismissPressed(_ sender: UIButton) {
+    dismiss(animated: true, completion: nil)
   }
 
-  @IBAction func successPressed(sender: UIButton) {
-    let successToastView = UINib(nibName: "SuccessToast", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+  @IBAction func successPressed(_ sender: UIButton) {
+    let successToastView = UINib(nibName: "SuccessToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     let successToast = Toast(view: successToastView, dismissAfter: 2.0, height: 44)
-    Toaster.sharedInstance.prepareToast(successToast, withPriority: .Low)
+    Toaster.sharedInstance.prepareToast(successToast, withPriority: .low)
   }
 
-  @IBAction func failurePressed(sender: UIButton) {
-    let failureToastView = UINib(nibName: "FailureToast", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+  @IBAction func failurePressed(_ sender: UIButton) {
+    let failureToastView = UINib(nibName: "FailureToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     let failureToast = Toast(view: failureToastView, dismissAfter: 2.0, height: 44)
-    Toaster.sharedInstance.prepareToast(failureToast, withPriority: .Immediate)
+    Toaster.sharedInstance.prepareToast(failureToast, withPriority: .immediate)
 
   }
 
@@ -32,7 +32,7 @@ class ModalViewController: UIViewController {
     super.viewDidLoad()
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     Toaster.sharedInstance.defaultViewController = self
