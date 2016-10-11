@@ -8,7 +8,8 @@ Plays nicely with Autolayout.
 
 ## Requirements
 - iOS 8.0+
-- Xcode 7.0+
+- Xcode 8
+- Swift 2.3
 
 ## Usage
 
