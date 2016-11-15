@@ -65,6 +65,7 @@ open class Toaster {
   }
 
   // returns true if a message was dismissed, false if none found
+  @discardableResult
   open func dismissActiveMessage() -> Bool {
     guard let activeMessage = activeMessage else {
       presentNextMessage()
@@ -78,6 +79,7 @@ open class Toaster {
 
   // removes a specific toast from the stack or dismisses if active
   // returns true if cleared, false if not found.
+  @discardableResult
   open func clearMessage(_ toast: Toast) -> Bool {
     if let activeMessage = activeMessage , activeMessage == toast {
       return dismissActiveMessage()
@@ -93,6 +95,7 @@ open class Toaster {
   }
 
   // returns true if a message was presented, false otherwise
+  @discardableResult
   fileprivate func presentNextMessage() -> Bool {
     if let vc = viewControllerToPresentIn(), let _message = messageStack.popLast() {
       _message.displayInViewController(vc)
