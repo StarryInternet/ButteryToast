@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ButteryToast"
-  s.version      = "2.0.0"
+  s.version      = "2.0.1"
   s.summary      = "Simple Toasting Library for iOS written in Swift."
   s.description  = <<-DESC
   	Simple Toasting Library for iOS written in Swift. Plays nicely with Autolayout.
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/StarryInternet/ButteryToast.git", :tag => s.version }
+  s.source       = { :git => "git@github.com:ProjectDecibel/ButteryToast.git", :tag => s.version }
 
 
   s.source_files  = "ButteryToast/"
