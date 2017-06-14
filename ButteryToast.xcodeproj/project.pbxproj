@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35810902E336E870D0918176 /* Pods_ButteryToastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9548D70B1FDFA8F2208F30 /* Pods_ButteryToastTests.framework */; };
 		9C4C46DB1BE9306A000AB615 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C46DA1BE9306A000AB615 /* ModalViewController.swift */; };
 		9C8341181BE9120C0063B1C6 /* ButteryToast.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C8341171BE9120C0063B1C6 /* ButteryToast.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C83411F1BE9120C0063B1C6 /* ButteryToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8341141BE9120C0063B1C6 /* ButteryToast.framework */; };
@@ -24,6 +25,8 @@
 		9C8341501BE91D9B0063B1C6 /* FailureToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C83414F1BE91D9B0063B1C6 /* FailureToast.xib */; };
 		9C8341521BE91FF00063B1C6 /* ButteryToast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8341141BE9120C0063B1C6 /* ButteryToast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9C8341561BE9200D0063B1C6 /* ButteryToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8341141BE9120C0063B1C6 /* ButteryToast.framework */; };
+		A059C058D15EB9FECCA42617 /* Pods_ButteryToastExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6128036DBEFF756615F34E8C /* Pods_ButteryToastExample.framework */; };
+		B2C599437B314EC0D0288AEB /* Pods_ButteryToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957FEAAA01B00838C83AAF10 /* Pods_ButteryToast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0CA0620B7543ECDAB4CFC4AC /* Pods-ButteryToastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToastTests/Pods-ButteryToastTests.release.xcconfig"; sourceTree = "<group>"; };
+		0ED46B8CDFD9CDB937F90AB6 /* Pods-ButteryToast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToast/Pods-ButteryToast.debug.xcconfig"; sourceTree = "<group>"; };
+		29CA5BEEF2DCECABAA2E95A3 /* Pods-ButteryToastExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToastExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToastExample/Pods-ButteryToastExample.debug.xcconfig"; sourceTree = "<group>"; };
+		5ACB5B9B33B575C219AC26DF /* Pods-ButteryToast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToast.release.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToast/Pods-ButteryToast.release.xcconfig"; sourceTree = "<group>"; };
+		60F5583AD1D5D41820344694 /* Pods-ButteryToastExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToastExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToastExample/Pods-ButteryToastExample.release.xcconfig"; sourceTree = "<group>"; };
+		6128036DBEFF756615F34E8C /* Pods_ButteryToastExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ButteryToastExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A9548D70B1FDFA8F2208F30 /* Pods_ButteryToastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ButteryToastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		957FEAAA01B00838C83AAF10 /* Pods_ButteryToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ButteryToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4C46DA1BE9306A000AB615 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		9C8341141BE9120C0063B1C6 /* ButteryToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ButteryToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8341171BE9120C0063B1C6 /* ButteryToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButteryToast.h; sourceTree = "<group>"; };
@@ -78,6 +89,7 @@
 		9C83414A1BE918770063B1C6 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9C83414D1BE919BF0063B1C6 /* SuccessToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuccessToast.xib; sourceTree = "<group>"; };
 		9C83414F1BE91D9B0063B1C6 /* FailureToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FailureToast.xib; sourceTree = "<group>"; };
+		F59108CDCF31BB0BC97E8E31 /* Pods-ButteryToastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButteryToastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ButteryToastTests/Pods-ButteryToastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C599437B314EC0D0288AEB /* Pods_ButteryToast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +106,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C83411F1BE9120C0063B1C6 /* ButteryToast.framework in Frameworks */,
+				35810902E336E870D0918176 /* Pods_ButteryToastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,12 +115,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C8341561BE9200D0063B1C6 /* ButteryToast.framework in Frameworks */,
+				A059C058D15EB9FECCA42617 /* Pods_ButteryToastExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		300437B30ABC8FAD8289B6AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0ED46B8CDFD9CDB937F90AB6 /* Pods-ButteryToast.debug.xcconfig */,
+				5ACB5B9B33B575C219AC26DF /* Pods-ButteryToast.release.xcconfig */,
+				29CA5BEEF2DCECABAA2E95A3 /* Pods-ButteryToastExample.debug.xcconfig */,
+				60F5583AD1D5D41820344694 /* Pods-ButteryToastExample.release.xcconfig */,
+				F59108CDCF31BB0BC97E8E31 /* Pods-ButteryToastTests.debug.xcconfig */,
+				0CA0620B7543ECDAB4CFC4AC /* Pods-ButteryToastTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9C83410A1BE9120C0063B1C6 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +142,8 @@
 				9C8341221BE9120C0063B1C6 /* ButteryToastTests */,
 				9C8341331BE914520063B1C6 /* ButteryToastExample */,
 				9C8341151BE9120C0063B1C6 /* Products */,
+				300437B30ABC8FAD8289B6AF /* Pods */,
+				C5FC7B75F0D2552B977323A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +195,16 @@
 			path = ButteryToastExample;
 			sourceTree = "<group>";
 		};
+		C5FC7B75F0D2552B977323A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				957FEAAA01B00838C83AAF10 /* Pods_ButteryToast.framework */,
+				6128036DBEFF756615F34E8C /* Pods_ButteryToastExample.framework */,
+				8A9548D70B1FDFA8F2208F30 /* Pods_ButteryToastTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -183,10 +223,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C8341281BE9120C0063B1C6 /* Build configuration list for PBXNativeTarget "ButteryToast" */;
 			buildPhases = (
+				A821DACF6C2DCDDEA370F047 /* [CP] Check Pods Manifest.lock */,
 				9C83410F1BE9120C0063B1C6 /* Sources */,
 				9C8341101BE9120C0063B1C6 /* Frameworks */,
 				9C8341111BE9120C0063B1C6 /* Headers */,
 				9C8341121BE9120C0063B1C6 /* Resources */,
+				490A095AEA499407C2663E54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,9 +243,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C83412B1BE9120C0063B1C6 /* Build configuration list for PBXNativeTarget "ButteryToastTests" */;
 			buildPhases = (
+				3BBCD1E6E4CAEF8E99009E6D /* [CP] Check Pods Manifest.lock */,
 				9C83411A1BE9120C0063B1C6 /* Sources */,
 				9C83411B1BE9120C0063B1C6 /* Frameworks */,
 				9C83411C1BE9120C0063B1C6 /* Resources */,
+				20C65B985439196002F3705E /* [CP] Embed Pods Frameworks */,
+				2AAF86540A46965301B282B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,10 +264,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C8341411BE914520063B1C6 /* Build configuration list for PBXNativeTarget "ButteryToastExample" */;
 			buildPhases = (
+				76CAAED265B9A117C7F11984 /* [CP] Check Pods Manifest.lock */,
 				9C83412E1BE914520063B1C6 /* Sources */,
 				9C83412F1BE914520063B1C6 /* Frameworks */,
 				9C8341301BE914520063B1C6 /* Resources */,
 				9C8341551BE91FF00063B1C6 /* Embed Frameworks */,
+				5DFAB5153F18AFE72760FEF2 /* [CP] Embed Pods Frameworks */,
+				33E8A512D8CBB6448651C0C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,6 +353,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20C65B985439196002F3705E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ButteryToastTests/Pods-ButteryToastTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2AAF86540A46965301B282B5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ButteryToastTests/Pods-ButteryToastTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33E8A512D8CBB6448651C0C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ButteryToastExample/Pods-ButteryToastExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BBCD1E6E4CAEF8E99009E6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		490A095AEA499407C2663E54 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ButteryToast/Pods-ButteryToast-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DFAB5153F18AFE72760FEF2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ButteryToastExample/Pods-ButteryToastExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76CAAED265B9A117C7F11984 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A821DACF6C2DCDDEA370F047 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9C83410F1BE9120C0063B1C6 /* Sources */ = {
@@ -469,6 +640,7 @@
 		};
 		9C8341291BE9120C0063B1C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ED46B8CDFD9CDB937F90AB6 /* Pods-ButteryToast.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -488,6 +660,7 @@
 		};
 		9C83412A1BE9120C0063B1C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ACB5B9B33B575C219AC26DF /* Pods-ButteryToast.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -506,6 +679,7 @@
 		};
 		9C83412C1BE9120C0063B1C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F59108CDCF31BB0BC97E8E31 /* Pods-ButteryToastTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ButteryToastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -516,6 +690,7 @@
 		};
 		9C83412D1BE9120C0063B1C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CA0620B7543ECDAB4CFC4AC /* Pods-ButteryToastTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ButteryToastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -526,6 +701,7 @@
 		};
 		9C8341421BE914520063B1C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29CA5BEEF2DCECABAA2E95A3 /* Pods-ButteryToastExample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -538,6 +714,7 @@
 		};
 		9C8341431BE914520063B1C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60F5583AD1D5D41820344694 /* Pods-ButteryToastExample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

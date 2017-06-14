@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 /**
  A toast contains a view for presentation by a Toaster.
@@ -44,17 +45,24 @@ open class Toast: Equatable {
     let parentView: UIView
 
     // place the alert in navigation bar if possible
+    var c: Constraint?
     if let navigationController = viewController.navigationController {
       parentView = navigationController.view
       navigationController.view.insertSubview(alertView, belowSubview: navigationController.navigationBar)
+      
+      alertView.snp.makeConstraints { make in
+        make.left.equalTo(parentView)
+        make.right.equalTo(parentView)
+        make.height.equalTo(44)
+        
+        if navigationController.navigationBar.isHidden {
+          make.top.equalTo(navigationController.topLayoutGuide.snp.bottom)
+        } else {
+          c = make.top.equalTo(navigationController.navigationBar.snp.bottom).constraint
+        }
 
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[alertView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["alertView": alertView])
-
-      if navigationController.navigationBar.isHidden {
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["topGuide": navigationController.topLayoutGuide, "alertView": alertView])
-      } else {
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[navBar]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["navBar": navigationController.navigationBar, "alertView": alertView])
       }
+
     } else {
       // no navigation bar, just place on view controller at top
       parentView = viewController.view
@@ -70,15 +78,18 @@ open class Toast: Equatable {
 
     parentView.addConstraints(constraints)
 
-    alertView.setNeedsLayout()
-    alertView.layoutIfNeeded()
-
+//    alertView.setNeedsLayout()
+    
+    c?.update(offset: -44)
     alertView.alpha = 0.0
-    alertView.transform = CGAffineTransform(translationX: 0.0, y: -alertView.bounds.height)
+//    alertView.transform = CGAffineTransform(translationX: 0.0, y: -alertView.bounds.height)
+    parentView.layoutIfNeeded()
     UIView.animate(withDuration: 0.25, animations: {
       alertView.alpha = 1.0
-      alertView.transform = CGAffineTransform.identity
-    }) 
+      c?.update(offset: 0)
+      parentView.layoutIfNeeded()
+//      alertView.transform = CGAffineTransform.identity
+    })
 
     let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
     alertView.addGestureRecognizer(tapGR)

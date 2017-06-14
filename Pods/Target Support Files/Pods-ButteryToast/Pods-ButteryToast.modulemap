@@ -1,0 +1,6 @@
+framework module Pods_ButteryToast {
+  umbrella header "Pods-ButteryToast-umbrella.h"
+
+  export *
+  module * { export * }
+}
