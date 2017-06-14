@@ -35,17 +35,17 @@ open class Toast: Equatable {
 
   fileprivate var messageView: ToastView?
   weak var delegate: ToastDelegate?  // messenger that presented message
+  
+  fileprivate var topConstraint: Constraint?
 
   internal func displayInViewController(_ viewController: UIViewController) {
 
     let alertView = ToastView(contentView: view)
     alertView.translatesAutoresizingMaskIntoConstraints = false
 
-    var constraints: [NSLayoutConstraint] = []
     let parentView: UIView
 
     // place the alert in navigation bar if possible
-    var c: Constraint?
     if let navigationController = viewController.navigationController {
       parentView = navigationController.view
       navigationController.view.insertSubview(alertView, belowSubview: navigationController.navigationBar)
@@ -53,12 +53,14 @@ open class Toast: Equatable {
       alertView.snp.makeConstraints { make in
         make.left.equalTo(parentView)
         make.right.equalTo(parentView)
-        make.height.equalTo(44)
+        if let height = height {
+          make.height.equalTo(height)
+        }
         
         if navigationController.navigationBar.isHidden {
-          make.top.equalTo(navigationController.topLayoutGuide.snp.bottom)
+          topConstraint = make.top.equalTo(navigationController.topLayoutGuide.snp.bottom).constraint
         } else {
-          c = make.top.equalTo(navigationController.navigationBar.snp.bottom).constraint
+          topConstraint = make.top.equalTo(navigationController.navigationBar.snp.bottom).constraint
         }
 
       }
@@ -67,28 +69,24 @@ open class Toast: Equatable {
       // no navigation bar, just place on view controller at top
       parentView = viewController.view
       viewController.view.addSubview(alertView)
-
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[alertView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["alertView": alertView])
-
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["topGuide": viewController.topLayoutGuide, "alertView": alertView])
+      
+      alertView.snp.makeConstraints { make in
+        make.left.equalTo(parentView)
+        make.right.equalTo(parentView)
+        if let height = height {
+          make.height.equalTo(height)
+        }
+        topConstraint = make.top.equalTo(viewController.topLayoutGuide.snp.bottom).constraint
+      }
     }
-    if let height = height {
-      constraints.append(NSLayoutConstraint(item: alertView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height))
-    }
 
-    parentView.addConstraints(constraints)
-
-//    alertView.setNeedsLayout()
-    
-    c?.update(offset: -44)
+    topConstraint?.update(offset: -(height ?? alertView.bounds.height))
     alertView.alpha = 0.0
-//    alertView.transform = CGAffineTransform(translationX: 0.0, y: -alertView.bounds.height)
     parentView.layoutIfNeeded()
     UIView.animate(withDuration: 0.25, animations: {
       alertView.alpha = 1.0
-      c?.update(offset: 0)
+      self.topConstraint?.update(offset: 0)
       parentView.layoutIfNeeded()
-//      alertView.transform = CGAffineTransform.identity
     })
 
     let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -115,7 +113,8 @@ open class Toast: Equatable {
     if let messageView = messageView {
       UIView.animate(withDuration: 0.25, animations: {
         messageView.alpha = 0.0
-        messageView.transform = CGAffineTransform(translationX: 0.0, y: -messageView.bounds.height)
+        self.topConstraint?.update(offset: -messageView.bounds.height)
+        messageView.superview?.layoutIfNeeded()
         }, completion: { success in
           messageView.removeFromSuperview()
           self.delegate?.toastDismissed(self)
