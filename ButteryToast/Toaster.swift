@@ -12,7 +12,8 @@ import UIKit
  Toaster manages a queue of Toasts and decides when they should be presented and dismissed.
  */
 open class Toaster {
-  open static let sharedInstance = Toaster()
+  
+  open static let shared = Toaster()
 
   /**
    The view controller that toasts should be presented from.
