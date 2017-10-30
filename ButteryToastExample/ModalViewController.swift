@@ -17,25 +17,18 @@ class ModalViewController: UIViewController {
 
   @IBAction func successPressed(_ sender: UIButton) {
     let successToastView = UINib(nibName: "SuccessToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let successToast = Toast(view: successToastView, dismissAfter: 2.0, height: 44)
-    Toaster.shared.prepareToast(successToast, withPriority: .low)
+    let successToast = Toast(view: successToastView)
+    Toaster.shared.add(successToast)
   }
 
   @IBAction func failurePressed(_ sender: UIButton) {
     let failureToastView = UINib(nibName: "FailureToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let failureToast = Toast(view: failureToastView, dismissAfter: 2.0, height: 44)
-    Toaster.shared.prepareToast(failureToast, withPriority: .immediate)
-
+    let failureToast = Toast(view: failureToastView)
+    Toaster.shared.add(failureToast)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    Toaster.shared.defaultViewController = self
-  }
-
+  
 }

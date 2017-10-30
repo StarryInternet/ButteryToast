@@ -17,13 +17,13 @@
 		9C83413C1BE914520063B1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C83413B1BE914520063B1C6 /* Assets.xcassets */; };
 		9C83413F1BE914520063B1C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C83413D1BE914520063B1C6 /* LaunchScreen.storyboard */; };
 		9C8341471BE915A40063B1C6 /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8341441BE915A40063B1C6 /* Toaster.swift */; };
-		9C8341481BE915A40063B1C6 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8341451BE915A40063B1C6 /* ToastView.swift */; };
 		9C8341491BE915A40063B1C6 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8341461BE915A40063B1C6 /* Toast.swift */; };
 		9C83414B1BE918770063B1C6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83414A1BE918770063B1C6 /* SecondViewController.swift */; };
 		9C83414E1BE919BF0063B1C6 /* SuccessToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C83414D1BE919BF0063B1C6 /* SuccessToast.xib */; };
 		9C8341501BE91D9B0063B1C6 /* FailureToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C83414F1BE91D9B0063B1C6 /* FailureToast.xib */; };
 		9C8341521BE91FF00063B1C6 /* ButteryToast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8341141BE9120C0063B1C6 /* ButteryToast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9C8341561BE9200D0063B1C6 /* ButteryToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8341141BE9120C0063B1C6 /* ButteryToast.framework */; };
+		9CADCBC71FA7785D00659F98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CADCBC61FA7785D00659F98 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,11 +73,11 @@
 		9C83413E1BE914520063B1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C8341401BE914520063B1C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C8341441BE915A40063B1C6 /* Toaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
-		9C8341451BE915A40063B1C6 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		9C8341461BE915A40063B1C6 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		9C83414A1BE918770063B1C6 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9C83414D1BE919BF0063B1C6 /* SuccessToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuccessToast.xib; sourceTree = "<group>"; };
 		9C83414F1BE91D9B0063B1C6 /* FailureToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FailureToast.xib; sourceTree = "<group>"; };
+		9CADCBC61FA7785D00659F98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				9C8341441BE915A40063B1C6 /* Toaster.swift */,
-				9C8341451BE915A40063B1C6 /* ToastView.swift */,
 				9C8341461BE915A40063B1C6 /* Toast.swift */,
+				9CADCBC61FA7785D00659F98 /* Extensions.swift */,
 				9C8341171BE9120C0063B1C6 /* ButteryToast.h */,
 				9C8341191BE9120C0063B1C6 /* Info.plist */,
 			);
@@ -312,8 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C8341491BE915A40063B1C6 /* Toast.swift in Sources */,
-				9C8341481BE915A40063B1C6 /* ToastView.swift in Sources */,
 				9C8341471BE915A40063B1C6 /* Toaster.swift in Sources */,
+				9CADCBC71FA7785D00659F98 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
