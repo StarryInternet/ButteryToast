@@ -7,7 +7,7 @@ Simple Toasting Library for iOS written in Swift.
 Plays nicely with Autolayout.
 
 ## Requirements
-- iOS 8.0+
+- iOS 9.0+
 - Xcode 9
 - Swift 4
 
