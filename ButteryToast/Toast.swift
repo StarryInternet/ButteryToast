@@ -99,11 +99,11 @@ open class Toast: Operation {
       yOffset = UIApplication.shared.statusBarFrame.size.height
     }
     
-    // use height of view currently or compressed autolayout size, whichever is greater
-    let height = max(view.bounds.height, view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height)
-    self.view.frame = CGRect(x: 0, y: yOffset, width: topVC.view.bounds.width, height: height)
-    self.view.alpha = 0.0
-    self.view.isUserInteractionEnabled = true
+    self.view.translatesAutoresizingMaskIntoConstraints = false
+    self.view.leftAnchor.constraint(equalTo: topVC.view.leftAnchor).isActive = true
+    self.view.rightAnchor.constraint(equalTo: topVC.view.rightAnchor).isActive = true
+    self.view.topAnchor.constraint(equalTo: topVC.view.topAnchor, constant: yOffset).isActive = true
+    self.view.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.bounds.height).isActive = true
     
     let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
     self.view.addGestureRecognizer(tapGR)
