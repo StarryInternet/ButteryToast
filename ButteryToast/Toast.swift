@@ -18,21 +18,23 @@ open class Toast: Operation {
   
   var duration: TimeInterval
   var delay: TimeInterval
-
+  var orientation: Orientation?
+  
   weak var toaster: Toaster?
   
   private let view: UIView
   private let transitionDuration: TimeInterval = 0.3
-
+  
   /**
    Initializes the `Toast` instance with the specified view.
    - parameter dismissAfter: If set, the time interval after which a Toast will auto-dismiss without user interaction. If unset, a Toast will persist until dismissed.
    - parameter height: If set, the height of the toast, enforced by AutoLayout. If unset, the height will be determined soley from the intrinsic content size of the view passed to the Toast.
-  */
-  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0) {
+   */
+  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0, orientation: Orientation? = nil) {
     self.view = view
     self.duration = duration
     self.delay = delay
+    self.orientation = orientation
   }
   
   private var _isExecuting = false
@@ -73,7 +75,6 @@ open class Toast: Operation {
   
   open override func main() {
     isExecuting = true
-    
     doOperation()
   }
   
@@ -91,20 +92,38 @@ open class Toast: Operation {
     topVC.view.addSubview(self.view)
     
     let yOffset: CGFloat
-    if #available(iOS 11.0, *) {
-      yOffset = topVC.view.safeAreaInsets.top
-    } else if topVC.navigationController != nil {
-      yOffset = topVC.topLayoutGuide.length
-    } else {
-      yOffset = UIApplication.shared.statusBarFrame.size.height
+    
+    let orientation: Orientation = {
+      if let orientation = self.orientation ?? toaster?.orientation {
+        return orientation
+      } else {
+        assertionFailure("no toaster found!"); return .top
+      }
+    }()
+    
+    switch orientation {
+    case .top:
+      if #available(iOS 11.0, *) {
+        yOffset = topVC.view.safeAreaInsets.top
+      } else if topVC.navigationController != nil {
+        yOffset = topVC.topLayoutGuide.length
+      } else {
+        yOffset = UIApplication.shared.statusBarFrame.size.height
+      }
+      self.view.topAnchor.constraint(equalTo: topVC.view.topAnchor, constant: yOffset).isActive = true
+    case .bottom:
+      if #available(iOS 11.0, *) {
+        yOffset = -topVC.view.safeAreaInsets.bottom
+      } else {
+        yOffset = topVC.bottomLayoutGuide.length
+      }
+      self.view.bottomAnchor.constraint(equalTo: topVC.view.bottomAnchor, constant: yOffset).isActive = true
     }
     
     self.view.translatesAutoresizingMaskIntoConstraints = false
     self.view.leftAnchor.constraint(equalTo: topVC.view.leftAnchor).isActive = true
     self.view.rightAnchor.constraint(equalTo: topVC.view.rightAnchor).isActive = true
-    self.view.topAnchor.constraint(equalTo: topVC.view.topAnchor, constant: yOffset).isActive = true
     self.view.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.bounds.height).isActive = true
-    
     let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
     self.view.addGestureRecognizer(tapGR)
     
@@ -143,3 +162,4 @@ open class Toast: Operation {
     })
   }
 }
+

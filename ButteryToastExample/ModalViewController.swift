@@ -17,13 +17,13 @@ class ModalViewController: UIViewController {
 
   @IBAction func successPressed(_ sender: UIButton) {
     let successToastView = UINib(nibName: "SuccessToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let successToast = Toast(view: successToastView)
+    let successToast = Toast(view: successToastView, orientation: .top)
     Toaster.shared.add(successToast)
   }
 
   @IBAction func failurePressed(_ sender: UIButton) {
     let failureToastView = UINib(nibName: "FailureToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let failureToast = Toast(view: failureToastView)
+    let failureToast = Toast(view: failureToastView, orientation: .bottom)
     Toaster.shared.add(failureToast)
   }
 
