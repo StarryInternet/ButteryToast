@@ -8,6 +8,12 @@
 
 import UIKit
 
+// defines the orientation of presented toasts
+public enum Orientation {
+  case top
+  case bottom
+}
+
 /**
  Toaster manages a queue of Toasts in OperationQueue (FIFO)
  */
@@ -16,6 +22,9 @@ open class Toaster {
   open static let shared = Toaster()
   
   open var window: UIWindow?
+  
+  // set the toast orientation to top by default
+  open var orientation: Orientation = .top
   
   open func add(_ toast: Toast) {
     toast.toaster = self

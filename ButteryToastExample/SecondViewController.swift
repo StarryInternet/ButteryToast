@@ -19,7 +19,7 @@ class SecondViewController: UIViewController {
 
   @IBAction func failurePressed(_ sender: UIButton) {
     let faliureToastView = UINib(nibName: "FailureToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let failureToast = Toast(view: faliureToastView)
+    let failureToast = Toast(view: faliureToastView, orientation: .bottom)
     Toaster.shared.add(failureToast)
   }
 }
