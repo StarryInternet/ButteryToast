@@ -17,16 +17,16 @@ public enum Orientation {
 /**
  Toaster manages a queue of Toasts in OperationQueue (FIFO)
  */
-open class Toaster {
+public class Toaster {
   
-  open static let shared = Toaster()
+  public static let shared = Toaster()
   
-  open var window: UIWindow?
+  public var window: UIWindow?
   
   // set the toast orientation to top by default
-  open var orientation: Orientation = .top
+  public var orientation: Orientation = .top
   
-  open func add(_ toast: Toast) {
+  public func add(_ toast: Toast) {
     toast.toaster = self
     queue.addOperation(toast)
   }

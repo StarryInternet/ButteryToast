@@ -14,7 +14,7 @@ import UIKit
  This allows for managing toasts in a queue and determining if they have been presented yet.
  */
 
-open class Toast: Operation {
+public class Toast: Operation {
   
   var duration: TimeInterval
   var delay: TimeInterval
@@ -38,7 +38,7 @@ open class Toast: Operation {
   }
   
   private var _isExecuting = false
-  override open var isExecuting: Bool {
+  override public var isExecuting: Bool {
     get {
       return _isExecuting
     }
@@ -50,7 +50,7 @@ open class Toast: Operation {
   }
   
   private var _isFinished = false
-  override open var isFinished: Bool {
+  override public var isFinished: Bool {
     get {
       return _isFinished
     }
@@ -63,17 +63,17 @@ open class Toast: Operation {
   
   private var isBeingManuallyDismissed = false
   
-  override open func start() {
+  override public func start() {
     guard !self.isExecuting else { return }
     super.start()
   }
   
-  open override func cancel() {
+  public override func cancel() {
     super.cancel()
     self.finish()
   }
   
-  open override func main() {
+  public override func main() {
     isExecuting = true
     doOperation()
   }
