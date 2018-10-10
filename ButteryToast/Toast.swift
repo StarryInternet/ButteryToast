@@ -153,7 +153,7 @@ public class Toast: Operation {
     self.isFinished = true
   }
   
-  func handleTap(_ sender: UITapGestureRecognizer) {
+  @objc func handleTap(_ sender: UITapGestureRecognizer) {
     isBeingManuallyDismissed = true
     UIView.animate(withDuration: self.transitionDuration, delay: 0.0, options: [.beginFromCurrentState], animations: {
       self.view.alpha = 0.0
