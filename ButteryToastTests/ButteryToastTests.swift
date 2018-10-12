@@ -21,13 +21,4 @@ class ButteryToastTests: XCTestCase {
     super.tearDown()
   }
 
-  func testClearingToast() {
-    let toast = Toast(view: UIView())
-    Toaster.sharedInstance.prepareToast(toast)
-    let cleared = Toaster.sharedInstance.clearMessage(toast)
-    XCTAssertTrue(cleared)
-  }
-
-
-
 }
