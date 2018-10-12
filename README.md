@@ -36,6 +36,7 @@ class ToastyViewController: UIViewController {
 ### Presentation Options
  Toasters have a variable `orientation` to determine the presentation style of their toasts.  This value is set to `top` by default.
  Toasts also can be initialized with an `orientation`  which overrides the `Toaster` level `orientation`.  Currently `top` and `bottom` are the options for `orientation`.
+ Toast default animation is a simple (but effective) fade. Slide in is also supported by initializing toast with an `animation`. Currently `fade` and `slide` are the options for `animation`.
 
 ## Installation
 

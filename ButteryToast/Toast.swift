@@ -15,10 +15,18 @@ import UIKit
  */
 
 public class Toast: Operation {
+
+  public enum Animation {
+    /// - Default animation
+    case fade
+    /// - Slide animation works best with opaque views convering safe area inset
+    case slide
+  }
   
   var duration: TimeInterval
   var delay: TimeInterval
   var orientation: Orientation?
+  let animation: Animation
   
   weak var toaster: Toaster?
   
@@ -30,11 +38,12 @@ public class Toast: Operation {
    - parameter dismissAfter: If set, the time interval after which a Toast will auto-dismiss without user interaction. If unset, a Toast will persist until dismissed.
    - parameter height: If set, the height of the toast, enforced by AutoLayout. If unset, the height will be determined soley from the intrinsic content size of the view passed to the Toast.
    */
-  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0, orientation: Orientation? = nil) {
+  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0, orientation: Orientation? = nil, animation: Animation = .fade) {
     self.view = view
     self.duration = duration
     self.delay = delay
     self.orientation = orientation
+    self.animation = animation
   }
   
   private var _isExecuting = false
@@ -85,23 +94,14 @@ public class Toast: Operation {
       }
       return
     }
-    
+
     // find view to present in
     let topVC = self.toaster!.viewControllerToPresentIn()!
-    self.view.alpha = 0.0
     topVC.view.addSubview(self.view)
-    
+
     let yOffset: CGFloat
-    
-    let orientation: Orientation = {
-      if let orientation = self.orientation ?? toaster?.orientation {
-        return orientation
-      } else {
-        assertionFailure("no toaster found!"); return .top
-      }
-    }()
-    
-    switch orientation {
+
+    switch resolvedOrientation {
     case .top:
       if #available(iOS 11.0, *) {
         yOffset = topVC.view.safeAreaInsets.top
@@ -126,20 +126,37 @@ public class Toast: Operation {
     self.view.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.bounds.height).isActive = true
     let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
     self.view.addGestureRecognizer(tapGR)
-    
-    UIView.animate(withDuration: self.transitionDuration, delay: self.delay, options: [.allowUserInteraction], animations: {
-      self.view.alpha = 1.0
-    }, completion: { animationsDidFinish in
+
+    // animation setup
+
+    let presentAnimations: () -> ()
+
+    switch animation {
+    case .fade:
+      self.view.alpha = 0.0
+      presentAnimations = { self.view.alpha = 1.0 }
+    case .slide:
+      presentAnimations = { self.view.transform = .identity }
+    }
+
+    // start in dismissed, or offscreen state
+    self.view.layoutIfNeeded()
+    dismissAnimations()
+
+    UIView.animate(withDuration: self.transitionDuration, delay: self.delay, options: [.allowUserInteraction], animations: presentAnimations, completion: { animationsDidFinish in
       UIView.animate(withDuration: self.duration, delay: 0.0, options: [.allowUserInteraction], animations: {
         self.view.alpha = 1.0001
       }, completion: { animationsDidFinish in
-        UIView.animate(withDuration: self.transitionDuration, animations: {
-          self.view.alpha = 0.0
-        }, completion: { _ in
-          if !self.isBeingManuallyDismissed {
+        if animationsDidFinish {
+          UIView.animate(withDuration: self.transitionDuration, animations: self.dismissAnimations, completion: { _ in
             self.finish()
-          }
-        })
+          })
+        } else if !self.isBeingManuallyDismissed {
+          // ensure finish called if animation cancelled for some other reason
+          self.finish()
+        } else {
+          // manual dismissal is handling dismis animation and calling finish
+        }
       })
     })
   }
@@ -152,12 +169,32 @@ public class Toast: Operation {
     self.isExecuting = false
     self.isFinished = true
   }
+
+  private var resolvedOrientation: Orientation {
+    if let orientation = self.orientation ?? toaster?.orientation {
+      return orientation
+    } else {
+      assertionFailure("no toaster found!"); return .top
+    }
+  }
+
+  private func dismissAnimations() {
+    switch animation {
+    case .fade:
+      view.alpha = 0.0
+    case .slide:
+      let offset: CGFloat
+      switch resolvedOrientation {
+      case .top: offset = -view.bounds.height
+      case .bottom: offset = view.bounds.height
+      }
+      view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: offset)
+    }
+  }
   
   @objc func handleTap(_ sender: UITapGestureRecognizer) {
     isBeingManuallyDismissed = true
-    UIView.animate(withDuration: self.transitionDuration, delay: 0.0, options: [.beginFromCurrentState], animations: {
-      self.view.alpha = 0.0
-    }, completion: { _ in
+    UIView.animate(withDuration: self.transitionDuration, delay: 0.0, options: [.beginFromCurrentState], animations: dismissAnimations, completion: { _ in
       self.finish()
     })
   }

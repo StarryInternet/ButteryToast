@@ -13,7 +13,7 @@ class FirstViewController: UIViewController {
 
   @IBAction func successPressed(_ sender: UIButton) {
     let successToastView = UINib(nibName: "SuccessToast", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    let successToast = Toast(view: successToastView)
+    let successToast = Toast(view: successToastView, animation: .slide)
     Toaster.shared.orientation = .bottom
     Toaster.shared.add(successToast)
   }
