@@ -25,4 +25,5 @@ Pod::Spec.new do |s|
 
 
   s.source_files  = "ButteryToast/"
+  s.swift_version = "4.2"
 end
