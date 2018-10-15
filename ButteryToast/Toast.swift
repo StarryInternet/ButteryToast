@@ -6,7 +6,6 @@
 //  Copyright © 2015 Starry. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 /**
@@ -14,114 +13,190 @@ import UIKit
  Toasts are unique - even two Toasts containing the same view are still different Toasts.
  This allows for managing toasts in a queue and determining if they have been presented yet.
  */
-open class Toast: Equatable {
 
-  fileprivate let view: UIView
-  fileprivate let dismissAfter: TimeInterval?
+public class Toast: Operation {
 
-  fileprivate let height: CGFloat?
-
+  public enum Animation {
+    /// - Default animation
+    case fade
+    /// - Slide animation works best with opaque views convering safe area inset
+    case slide
+  }
+  
+  var duration: TimeInterval
+  var delay: TimeInterval
+  var orientation: Orientation?
+  let animation: Animation
+  
+  weak var toaster: Toaster?
+  
+  private let view: UIView
+  private let transitionDuration: TimeInterval = 0.3
+  
   /**
    Initializes the `Toast` instance with the specified view.
    - parameter dismissAfter: If set, the time interval after which a Toast will auto-dismiss without user interaction. If unset, a Toast will persist until dismissed.
    - parameter height: If set, the height of the toast, enforced by AutoLayout. If unset, the height will be determined soley from the intrinsic content size of the view passed to the Toast.
-  */
-  public init(view: UIView, dismissAfter: TimeInterval? = nil, height: CGFloat?=nil) {
+   */
+  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0, orientation: Orientation? = nil, animation: Animation = .fade) {
     self.view = view
-    self.dismissAfter = dismissAfter
-    self.height = height
+    self.duration = duration
+    self.delay = delay
+    self.orientation = orientation
+    self.animation = animation
   }
+  
+  private var _isExecuting = false
+  override public var isExecuting: Bool {
+    get {
+      return _isExecuting
+    }
+    set {
+      willChangeValue(forKey: "isExecuting")
+      _isExecuting = newValue
+      didChangeValue(forKey: "isExecuting")
+    }
+  }
+  
+  private var _isFinished = false
+  override public var isFinished: Bool {
+    get {
+      return _isFinished
+    }
+    set {
+      willChangeValue(forKey: "isFinished")
+      _isFinished = newValue
+      didChangeValue(forKey: "isFinished")
+    }
+  }
+  
+  private var isBeingManuallyDismissed = false
+  
+  override public func start() {
+    guard !self.isExecuting else { return }
+    super.start()
+  }
+  
+  public override func cancel() {
+    super.cancel()
+    self.finish()
+  }
+  
+  public override func main() {
+    isExecuting = true
+    doOperation()
+  }
+  
+  private func doOperation() {
+    guard Thread.isMainThread else {
+      DispatchQueue.main.async {
+        self.doOperation()
+      }
+      return
+    }
 
-  fileprivate var messageView: ToastView?
-  weak var delegate: ToastDelegate?  // messenger that presented message
+    // find view to present in
+    let topVC = self.toaster!.viewControllerToPresentIn()!
+    topVC.view.addSubview(self.view)
 
-  internal func displayInViewController(_ viewController: UIViewController) {
+    let yOffset: CGFloat
 
-    let alertView = ToastView(contentView: view)
-    alertView.translatesAutoresizingMaskIntoConstraints = false
-
-    var constraints: [NSLayoutConstraint] = []
-    let parentView: UIView
-
-    // place the alert in navigation bar if possible
-    if let navigationController = viewController.navigationController {
-      parentView = navigationController.view
-      navigationController.view.insertSubview(alertView, belowSubview: navigationController.navigationBar)
-
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[alertView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["alertView": alertView])
-
-      if navigationController.navigationBar.isHidden {
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["topGuide": navigationController.topLayoutGuide, "alertView": alertView])
+    switch resolvedOrientation {
+    case .top:
+      if #available(iOS 11.0, *) {
+        yOffset = topVC.view.safeAreaInsets.top
+      } else if topVC.navigationController != nil {
+        yOffset = topVC.topLayoutGuide.length
       } else {
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[navBar]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["navBar": navigationController.navigationBar, "alertView": alertView])
+        yOffset = UIApplication.shared.statusBarFrame.size.height
       }
-    } else {
-      // no navigation bar, just place on view controller at top
-      parentView = viewController.view
-      viewController.view.addSubview(alertView)
-
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[alertView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["alertView": alertView])
-
-      constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-0-[alertView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["topGuide": viewController.topLayoutGuide, "alertView": alertView])
-    }
-    if let height = height {
-      constraints.append(NSLayoutConstraint(item: alertView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height))
-    }
-
-    parentView.addConstraints(constraints)
-
-    alertView.setNeedsLayout()
-    alertView.layoutIfNeeded()
-
-    alertView.alpha = 0.0
-    alertView.transform = CGAffineTransform(translationX: 0.0, y: -alertView.bounds.height)
-    UIView.animate(withDuration: 0.25, animations: {
-      alertView.alpha = 1.0
-      alertView.transform = CGAffineTransform.identity
-    }) 
-
-    let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-    alertView.addGestureRecognizer(tapGR)
-
-    // setup delayed dismissal
-    if let dismissAfter = dismissAfter {
-      let delay = Int64(Double(dismissAfter) * Double(NSEC_PER_SEC))
-      let after = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
-      DispatchQueue.main.asyncAfter(deadline: after) { [weak self] in
-        self?.dismiss()
+      self.view.topAnchor.constraint(equalTo: topVC.view.topAnchor, constant: yOffset).isActive = true
+    case .bottom:
+      if #available(iOS 11.0, *) {
+        yOffset = -topVC.view.safeAreaInsets.bottom
+      } else {
+        yOffset = topVC.bottomLayoutGuide.length
       }
+      self.view.bottomAnchor.constraint(equalTo: topVC.view.bottomAnchor, constant: yOffset).isActive = true
+    }
+    
+    self.view.translatesAutoresizingMaskIntoConstraints = false
+    self.view.leftAnchor.constraint(equalTo: topVC.view.leftAnchor).isActive = true
+    self.view.rightAnchor.constraint(equalTo: topVC.view.rightAnchor).isActive = true
+    self.view.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.bounds.height).isActive = true
+    let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+    self.view.addGestureRecognizer(tapGR)
+
+    // animation setup
+
+    let presentAnimations: () -> ()
+
+    switch animation {
+    case .fade:
+      self.view.alpha = 0.0
+      presentAnimations = { self.view.alpha = 1.0 }
+    case .slide:
+      presentAnimations = { self.view.transform = .identity }
     }
 
-    messageView = alertView
+    // start in dismissed, or offscreen state
+    self.view.layoutIfNeeded()
+    dismissAnimations()
 
-  }
-
-  @objc func handleTap(_ tapGesture: UITapGestureRecognizer) {
-    dismiss()
-  }
-
-  func dismiss() {
-    if let messageView = messageView {
-      UIView.animate(withDuration: 0.25, animations: {
-        messageView.alpha = 0.0
-        messageView.transform = CGAffineTransform(translationX: 0.0, y: -messageView.bounds.height)
-        }, completion: { success in
-          messageView.removeFromSuperview()
-          self.delegate?.toastDismissed(self)
+    UIView.animate(withDuration: self.transitionDuration, delay: self.delay, options: [.allowUserInteraction], animations: presentAnimations, completion: { animationsDidFinish in
+      UIView.animate(withDuration: self.duration, delay: 0.0, options: [.allowUserInteraction], animations: {
+        self.view.alpha = 1.0001
+      }, completion: { animationsDidFinish in
+        if animationsDidFinish {
+          UIView.animate(withDuration: self.transitionDuration, animations: self.dismissAnimations, completion: { _ in
+            self.finish()
+          })
+        } else if !self.isBeingManuallyDismissed {
+          // ensure finish called if animation cancelled for some other reason
+          self.finish()
+        } else {
+          // manual dismissal is handling dismis animation and calling finish
+        }
       })
-    } else {
-      delegate?.toastDismissed(self)
+    })
+  }
+  
+  private func finish() {
+    if isFinished {
+      return
     }
+    self.view.removeFromSuperview()
+    self.isExecuting = false
+    self.isFinished = true
+  }
+
+  private var resolvedOrientation: Orientation {
+    if let orientation = self.orientation ?? toaster?.orientation {
+      return orientation
+    } else {
+      assertionFailure("no toaster found!"); return .top
+    }
+  }
+
+  private func dismissAnimations() {
+    switch animation {
+    case .fade:
+      view.alpha = 0.0
+    case .slide:
+      let offset: CGFloat
+      switch resolvedOrientation {
+      case .top: offset = -view.bounds.height
+      case .bottom: offset = view.bounds.height
+      }
+      view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: offset)
+    }
+  }
+  
+  @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    isBeingManuallyDismissed = true
+    UIView.animate(withDuration: self.transitionDuration, delay: 0.0, options: [.beginFromCurrentState], animations: dismissAnimations, completion: { _ in
+      self.finish()
+    })
   }
 }
 
-public func ==(lhs: Toast, rhs: Toast) -> Bool {
-  return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
-}
-
-
-protocol ToastDelegate: class {
-  
-  func toastDismissed(_ toast: Toast)
-  
-}
