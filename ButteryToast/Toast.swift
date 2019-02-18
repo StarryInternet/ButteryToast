@@ -32,18 +32,26 @@ public class Toast: Operation {
   
   private let view: UIView
   private let transitionDuration: TimeInterval = 0.3
+  private let onTap: ( (Toast) -> Void )?
   
   /**
    Initializes the `Toast` instance with the specified view.
    - parameter dismissAfter: If set, the time interval after which a Toast will auto-dismiss without user interaction. If unset, a Toast will persist until dismissed.
    - parameter height: If set, the height of the toast, enforced by AutoLayout. If unset, the height will be determined soley from the intrinsic content size of the view passed to the Toast.
    */
-  public init(view: UIView, duration: TimeInterval = 2.0, delay: TimeInterval = 0.0, orientation: Orientation? = nil, animation: Animation = .fade) {
+  public init(
+    view: UIView,
+    duration: TimeInterval = 2.0,
+    delay: TimeInterval = 0.0,
+    orientation: Orientation? = nil,
+    animation: Animation = .fade,
+    onTap: ( (Toast) -> Void )? = nil) {
     self.view = view
     self.duration = duration
     self.delay = delay
     self.orientation = orientation
     self.animation = animation
+    self.onTap = onTap
   }
   
   private var _isExecuting = false
@@ -193,6 +201,7 @@ public class Toast: Operation {
   }
   
   @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    onTap?(self)
     isBeingManuallyDismissed = true
     UIView.animate(withDuration: self.transitionDuration, delay: 0.0, options: [.beginFromCurrentState], animations: dismissAnimations, completion: { _ in
       self.finish()
