@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ButteryToast"
-  s.version      = "3.1.0"
+  s.version      = "3.1.1"
   s.summary      = "Simple Toasting Library for iOS written in Swift."
   s.description  = <<-DESC
   	Simple Toasting Library for iOS written in Swift. Plays nicely with Autolayout.
@@ -25,5 +25,5 @@ Pod::Spec.new do |s|
 
 
   s.source_files  = "ButteryToast/"
-  s.swift_version = "4.2"
+  s.swift_version = "5.0"
 end
