@@ -16,6 +16,8 @@ build/
 *.o
 *.LinkFileList
 *.hmap
+.build
+.swiftpm
 
 # Automatic backup files
 *~.nib/
